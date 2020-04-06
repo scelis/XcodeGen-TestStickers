@@ -1,0 +1,40 @@
+name: TestStickers
+
+targets:
+
+  TestStickers:
+    type: application.messages
+    platform: iOS
+    sources:
+      - path: TestStickers
+      - path: Shared
+    dependencies:
+      - target: TestStickersExtension
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.sebastiancelis.TestStickers
+      ASSETCATALOG_COMPILER_APPICON_NAME: "iMessage App Icon"
+      IPHONEOS_DEPLOYMENT_TARGET: "10.0"
+      LD_RUNPATH_SEARCH_PATHS: ""
+
+  TestStickersExtension:
+    type: app-extension.messages-sticker-pack
+    platform: iOS
+    sources:
+      - path: TestStickersExtension
+      - path: Shared
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.sebastiancelis.TestStickers.StickerPackExtension
+      ASSETCATALOG_COMPILER_APPICON_NAME: "iMessage App Icon"
+      IPHONEOS_DEPLOYMENT_TARGET: "10.0"
+      LD_RUNPATH_SEARCH_PATHS: ""
+
+schemes:
+  TestStickers:
+    build:
+      targets:
+        TestStickersExtension: all
+        TestStickers: all
+      parallelizeBuild: true
+      buildImplicitDependencies: true
+    run:
+      launchAutomaticallySubstyle: 2
